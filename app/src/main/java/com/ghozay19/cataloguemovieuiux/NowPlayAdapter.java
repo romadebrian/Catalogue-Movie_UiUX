@@ -21,8 +21,7 @@ public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHold
     private ArrayList<MovieItem> mMovieItem = new ArrayList<>();
     private LayoutInflater mInflater;
     private Context context;
-
-    public static String EXTRA_TITLE = "extra_title";
+    
     public static String EXTRA_OVERVIEW = "extra_overview";
     public static String EXTRA_RELEASE_DATE = "extra_release_date";
     public static String EXTRA_POSTER_JPG = "extra_poster_jpg";
@@ -103,29 +102,6 @@ public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHold
         holder.tv_rlsdate_movie.setText(mMovieItem.get(position).getMov_releasedate());
         holder.tv_title_movie.setText(mMovieItem.get(position).getMov_title());
 
-
-        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(context, DetailActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString(EXTRA_TITLE, mMovieItem.get(position).getMov_title());
-                extras.putString(EXTRA_POSTER_JPG, mMovieItem.get(position).getMov_poster());
-                extras.putString(EXTRA_OVERVIEW, mMovieItem.get(position).getMov_synopsis());
-                extras.putString(EXTRA_RELEASE_DATE, mMovieItem.get(position).getMov_releasedate());
-                extras.putString(EXTRA_RATE, mMovieItem.get(position).getMov_rate());
-                intent.putExtra(EXTRA_ITEMS, extras);
-                context.startActivity(intent);
-            }
-        });
-
-        holder.btn_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, (context.getString(R.string.share)) + " " + mMovieItem.get(position).getMov_title(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 
