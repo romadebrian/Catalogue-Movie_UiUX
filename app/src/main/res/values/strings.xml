@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Catalogue Movie UI UX</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nama_user">Najib Ghozy Mustofa</string>
+    <string name="email_user">ghozymustofa@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--Ini isi dalemnya -->
+
+    <string name="now_playing">NOW PLAYING</string>
+    <string name="up_coming">UP COMING</string>
+
+    <string name="input_movie_title"> Input Movie Title</string>
+    <string name="search"> search</string>
+    <string name="synopsis_movie"> Synopsis Movie</string>
+    <string name="rls_date"> Release Date</string>
+    <string name="synopsis"> Synopsis</string>
+    <string name="rating_film"> 1000 Ratings (9.9/10)</string>
+    <string name="rating"> Rating</string>
+    <string name="movie_title"> Movie Title</string>
+    <string name="postermovie"> PosterMovie</string>
+    <string name="tgl_rilis">Minggu, Jul 1, 1999</string>
+    <string name="share">share</string>
+
+
+</resources>

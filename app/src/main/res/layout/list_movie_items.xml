@@ -1,0 +1,46 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/poster_mov"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/detail_activity_margin"
+        android:paddingRight="@dimen/detail_activity_margin">
+
+        <TextView
+            android:id="@+id/title_mov"
+            android:contentDescription="poster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_title" />
+
+        <TextView
+            android:id="@+id/synopsis_mov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/synopsis_movie" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rls_date" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
