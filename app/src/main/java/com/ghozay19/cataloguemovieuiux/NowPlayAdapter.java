@@ -97,7 +97,7 @@ public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Picasso.with(context).load("http://image.tmdb.org/t/p/w154/" + mMovieItem.get(position).getMov_poster()).placeholder(context.getResources().getDrawable(R.drawable.ic_launcher_background)).error(context.getResources().getDrawable(R.drawable.image)).into(holder.iv_poster_movie);
-//        Picasso.with(context).load(mData.get(position).getMov_poster()).into(holder.iv_poster_movie);
+//        Picasso.with(context).load(mMovieItem.get(position).getMov_poster()).into(holder.iv_poster_movie);
         holder.tv_title_movie.setText(mMovieItem.get(position).getMov_title());
         holder.tv_synopsis_movie.setText(mMovieItem.get(position).getMov_synopsis());
         holder.tv_rlsdate_movie.setText(mMovieItem.get(position).getMov_releasedate());
