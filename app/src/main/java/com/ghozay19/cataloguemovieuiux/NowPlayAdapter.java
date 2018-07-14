@@ -123,7 +123,7 @@ public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHold
         holder.btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, (context.getString(R.string.label_share)) + " " + mMovieItem.get(position).getMov_title(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, (context.getString(R.string.share)) + " " + mMovieItem.get(position).getMov_title(), Toast.LENGTH_SHORT).show();
             }
         });
     }
