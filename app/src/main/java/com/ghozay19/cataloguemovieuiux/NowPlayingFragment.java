@@ -55,8 +55,9 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
     }
 
     @Override
-    public void onLoadFinished(Loader<ArrayList<MovieItem>> loader, ArrayList<MovieItem> data) {
-        adapter.setData(nowPlayingData);
+    public void onLoadFinished(Loader<ArrayList<MovieItem>> loader, ArrayList<MovieItem> nowPlayingData) {
+        adapter.setData(nowPlayingData);  //before
+//        adapter.setData(data); //after ask in Discussion
     }
 
     @Override

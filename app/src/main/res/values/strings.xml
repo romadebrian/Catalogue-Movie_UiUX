@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nama_user">Najib Ghozy Mustofa</string>
-    <string name="email_user">ghozymustofa@gmail.com</string>
+    <string name="email_user">ghozymustofa28@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -27,6 +27,7 @@
     <string name="postermovie"> PosterMovie</string>
     <string name="tgl_rilis">Minggu, Jul 1, 1999</string>
     <string name="share">share</string>
+    <string name="detail">detail</string>
 
 
 </resources>

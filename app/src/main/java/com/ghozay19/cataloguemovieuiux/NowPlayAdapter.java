@@ -14,14 +14,17 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHolder> {
 
     private ArrayList<MovieItem> mMovieItem = new ArrayList<>();
     private LayoutInflater mInflater;
     private Context context;
-    
+
     public static String EXTRA_OVERVIEW = "extra_overview";
     public static String EXTRA_RELEASE_DATE = "extra_release_date";
     public static String EXTRA_POSTER_JPG = "extra_poster_jpg";
@@ -35,8 +38,11 @@ public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHold
     }
 
     public void setData(ArrayList<MovieItem> items) {
-        mMovieItem = items;
-        notifyDataSetChanged();
+        mMovieItem = items;  //Before, Data Ga Muncul
+        notifyDataSetChanged(); //  kemudian nanya di Discussion
+//        mMovieItem = new ArrayList<>(); // ini jawaban mas Alfian
+//        mMovieItem.addAll(items);
+//        notifyDataSetChanged();
     }
 
     public void addItem(final MovieItem item) {
@@ -95,12 +101,26 @@ public class NowPlayAdapter extends RecyclerView.Adapter<NowPlayAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Picasso.with(context).load("http://image.tmdb.org/t/p/w154/" + mMovieItem.get(position).getMov_poster()).placeholder(context.getResources().getDrawable(R.drawable.ic_launcher_background)).error(context.getResources().getDrawable(R.drawable.image)).into(holder.iv_poster_movie);
-//        Picasso.with(context).load(mMovieItem.get(position).getMov_poster()).into(holder.iv_poster_movie);
         holder.tv_title_movie.setText(mMovieItem.get(position).getMov_title());
         holder.tv_synopsis_movie.setText(mMovieItem.get(position).getMov_synopsis());
-        holder.tv_rlsdate_movie.setText(mMovieItem.get(position).getMov_releasedate());
         holder.tv_title_movie.setText(mMovieItem.get(position).getMov_title());
+
+        Picasso.with(context).load("http://image.tmdb.org/t/p/w154/" + mMovieItem.get(position)
+                .getMov_poster()).placeholder(context.getResources()
+                .getDrawable(R.drawable.ic_launcher_background))
+                .error(context.getResources().getDrawable(R.drawable.image)).into(holder.iv_poster_movie);
+
+        String retrieveDate = mMovieItem.get(position).getMov_releasedate();
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date date = date_format.parse(retrieveDate);
+            SimpleDateFormat new_date_format = new SimpleDateFormat("EEEE, dd MMMM yyyy");
+            String release_date = new_date_format.format(date);
+            holder.tv_rlsdate_movie.setText(release_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 

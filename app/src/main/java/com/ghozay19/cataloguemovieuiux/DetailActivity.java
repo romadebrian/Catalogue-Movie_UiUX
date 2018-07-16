@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         try {
             Date date = date_format.parse(release_date);
 
-            SimpleDateFormat new_date_format = new SimpleDateFormat("EEEE, dd MM, yyyy");
+            SimpleDateFormat new_date_format = new SimpleDateFormat("EEEE, dd MMMM yyyy");
             String date_of_release = new_date_format.format(date);
             tvReleaseDate.setText(date_of_release);
 

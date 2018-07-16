@@ -100,7 +100,7 @@ public class MovieAdapter extends BaseAdapter {
 
         try {
             Date date = date_format.parse(retrieveDate);
-            SimpleDateFormat new_date_format = new SimpleDateFormat("EEEE, MM dd, yyyy");
+            SimpleDateFormat new_date_format = new SimpleDateFormat("EEEE, dd MMMM yyyy");
             String release_date = new_date_format.format(date);
             holder.tv_rlsdate_movie.setText(release_date);
         } catch (ParseException e) {

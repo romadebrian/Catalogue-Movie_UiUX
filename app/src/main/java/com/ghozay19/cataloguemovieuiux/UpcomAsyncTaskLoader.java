@@ -1,8 +1,9 @@
 package com.ghozay19.cataloguemovieuiux;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
+import android.content.Context;
+import android.database.DefaultDatabaseErrorHandler;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
@@ -17,46 +18,48 @@ import cz.msebera.android.httpclient.Header;
 import static com.ghozay19.cataloguemovieuiux.BuildConfig.MOVIE_API_KEY;
 import static com.ghozay19.cataloguemovieuiux.BuildConfig.MOVIE_URL;
 
-public class NowPlayAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieItem>> {
+public class UpcomAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieItem>> {
 
     private ArrayList<MovieItem> mData;
     private boolean mHasResult = false;
 
-
-    public NowPlayAsyncTaskLoader(final Context context, ArrayList<MovieItem> mData) {
+    public UpcomAsyncTaskLoader(final Context context, ArrayList<MovieItem> mData ) {
         super(context);
         onForceLoad();
     }
 
+//    Default
+//    public UpcomAsyncTaskLoader(Context context) {
+//        super(context);
+//    }
+
     @Override
-    protected void onStartLoading() {
+    protected void onStartLoading(){
         if (takeContentChanged())
             forceLoad();
         else if (mHasResult)
             deliverResult(mData);
     }
 
+
     @Override
-    public void deliverResult(final ArrayList<MovieItem> data) {
+    public void deliverResult (final ArrayList<MovieItem> data){
         mData = data;
         mHasResult = true;
         super.deliverResult(data);
     }
 
+
     @Override
-    protected void onReset() {
+    public void onReset(){
         super.onReset();
         onStopLoading();
-        if (mHasResult) {
+        if (mHasResult){
             onReleaseResource(mData);
             mData = null;
             mHasResult = false;
         }
     }
-
-
-    //Tempat isi API KEY
-//    private static final String API_KEY = "ed1f1b69630ec5a7109bca52edb898f9";
 
     private void onReleaseResource(ArrayList<MovieItem> mData) {
     }
@@ -67,46 +70,41 @@ public class NowPlayAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieItem>
         SyncHttpClient client = new SyncHttpClient();
 
         final ArrayList<MovieItem> movie_items = new ArrayList<>();
-//        String url = MOVIE_URL + "/now_playing?api_key=" + MOVIE_API_KEY + "&language=en-US";
-        String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + MOVIE_API_KEY+ "&language=en-US" ;
-
+//        String url = MOVIE_URL +"/upcoming?api_key"+MOVIE_API_KEY+"&language=en-US";
+        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + MOVIE_API_KEY+ "&language=en-US" ;
 
         client.get(url, new AsyncHttpResponseHandler() {
 
             @Override
-            public void onStart() {
+            public void onStart(){
                 super.onStart();
                 setUseSynchronousMode(true);
             }
 
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
                 try {
 
                     String result = new String(responseBody);
-                    JSONObject responseObject = new JSONObject(result);
-                    JSONArray list = responseObject.getJSONArray("results");
+                    JSONObject responObject = new JSONObject(result);
+                    JSONArray list = responObject.getJSONArray("results");
 
-                    for (int i = 0; i < list.length(); i++) {
+                    for (int i = 0; i < list.length(); i++){
                         JSONObject film = list.getJSONObject(i);
-                        MovieItem movieItems = new MovieItem(film);
-                        movie_items.add(movieItems);
+                        MovieItem movieItem = new MovieItem(film);
+                        movie_items.add(movieItem);
                     }
 
-                } catch (Exception e) {
+                }catch (Exception e){
                     e.printStackTrace();
                 }
             }
 
-
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
             }
         });
+
         return movie_items;
     }
 }
-
